@@ -1,0 +1,10 @@
+.element__photo {
+    position: relative;
+    display: flex;
+    grid-area: photo;
+    width: 282px;
+    height: 282px;
+    object-fit: contain;
+    overflow: hidden;
+    z-index: 1;
+}

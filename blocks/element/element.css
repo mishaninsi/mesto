@@ -1,0 +1,12 @@
+.element {
+    display: grid;
+    margin: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content max-content;
+    grid-template-areas:
+        "photo photo"
+        "place-name like";
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    
+    }
