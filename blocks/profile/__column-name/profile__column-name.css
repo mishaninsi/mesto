@@ -1,0 +1,11 @@
+.profile__column-name {
+    grid-area: name;
+    margin-top: 22px;
+    margin-bottom: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
+    color: #FFFFFF;
+}

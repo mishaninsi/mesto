@@ -1,0 +1,9 @@
+.profile {
+    margin: auto;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    min-width: 880px;
+    width: calc((880/1280)*100%);
+    justify-content: space-between;
+}

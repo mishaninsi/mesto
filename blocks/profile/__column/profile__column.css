@@ -1,0 +1,6 @@
+.profile__column {
+    display: flex;
+    flex-direction: row;
+    max-width: min-content;
+    
+}

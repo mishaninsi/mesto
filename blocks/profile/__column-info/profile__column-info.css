@@ -1,0 +1,14 @@
+.profile__column-info {
+    display: grid;
+    margin: 0;
+    margin-left: 30px;
+    grid-template-columns: 294px 24px;
+    grid-template-rows: min-content 18px;
+    grid-template-areas:
+        "name button"
+        "profession profession";
+    column-gap: 18px;
+    row-gap: 7px;
+    
+    
+}
