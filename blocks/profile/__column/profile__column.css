@@ -4,3 +4,12 @@
     max-width: min-content;
     
 }
+
+@media screen and (max-width: 850px) {
+    .profile__column {
+    margin: auto;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    }
+}

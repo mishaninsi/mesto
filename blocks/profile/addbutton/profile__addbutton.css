@@ -9,3 +9,25 @@
     background-repeat: no-repeat;
     box-sizing: border-box;
     }
+
+@media screen and (max-width: 1024px) {
+    .profile__addbutton {
+    width: calc((120/880)*100%);
+
+        }
+    }
+@media screen and (max-width: 850px) {
+    .profile__addbutton {
+    margin-top: 36px;
+    width: 100%;
+    min-width: 282px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile__addbutton {
+    margin-top: 36px;
+    width: 282px;
+    height: 50px;
+    }
+}

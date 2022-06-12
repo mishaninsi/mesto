@@ -2,9 +2,15 @@
     position: relative;
     display: flex;
     grid-area: photo;
-    width: 282px;
-    height: 282px;
+    width: 100%;
+    height: min-content;
     object-fit: contain;
     overflow: hidden;
     z-index: 1;
+}
+
+@media screen and (max-width: 850px) {
+    .element__photo {
+    width: 100%;
+    }
 }

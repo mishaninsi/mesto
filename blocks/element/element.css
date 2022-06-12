@@ -8,5 +8,10 @@
         "place-name like";
     background-color: #FFFFFF;
     border-radius: 10px;
-    
+    z-index: 0;
     }
+@media screen and (max-width: 320px) {
+    .element {
+    grid-template-rows: 282px 79px;
+    }
+}

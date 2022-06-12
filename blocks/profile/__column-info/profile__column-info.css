@@ -9,6 +9,24 @@
         "profession profession";
     column-gap: 18px;
     row-gap: 7px;
-    
-    
+}
+
+@media screen and (max-width: 850px) {
+    .profile__column-info {
+    margin: auto;
+    }
+    }
+
+@media screen and (max-width: 500px) {
+    .profile__column-info {
+    grid-template-columns: max-content 24px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile__column-info {
+    margin:0;
+    column-gap: 10px;
+    row-gap: 14px;
+    }
 }
