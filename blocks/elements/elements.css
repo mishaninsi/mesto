@@ -7,9 +7,7 @@
     grid-template-rows: repeat(2, min-content);
     column-gap: 17px;
     row-gap: 20px;
-        
-
-}
+ }
 
 @media screen and (max-width: 850px) {
     .elements {

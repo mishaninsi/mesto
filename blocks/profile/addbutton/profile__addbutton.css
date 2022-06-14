@@ -10,6 +10,10 @@
     box-sizing: border-box;
     }
 
+.profile__addbutton:hover {
+    opacity: 0.6; 
+     }
+
 @media screen and (max-width: 1024px) {
     .profile__addbutton {
     width: calc((120/880)*100%);
@@ -26,8 +30,9 @@
 
 @media screen and (max-width: 320px) {
     .profile__addbutton {
-    margin-top: 36px;
+    margin-top: 32px;
     width: 282px;
     height: 50px;
+    background-size: 6%;
     }
 }

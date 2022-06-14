@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<div class="page__container">
 <div class="page">
 <header class="header">
         <div class="header__logo">
@@ -64,17 +65,23 @@
         <p class="footer__copyright">&copy;2022 Mesto Russia</p>
     </footer>
 </div>
-<div class="popup">
-    <div class="popup__close-btn"></div>
-    <div class="popup__container">
-    <h3 class="popup__title">Редактировать профиль</h3>
-    <p class="popup__name-field">Жак-Ив Кусто</p>
-    <p class="popup__profession-field">Исследователь океана</p>
-    <div class="popup__submit-btn">
-    <p class="popup__submit-btn-txt">Сохранить</p>
-    </div>
-    </div>
 </div>
+<div class="popup"> <!--popup_opened-->
+    <div class="popup__close-btn"></div>
+    <form class="popup__container">
+    <h3 class="popup__title">Редактировать профиль</h3>
+    <fieldset class="popup__name-field">
+    <input type="text" value="Жак-Ив Кусто" class="nameInput">
+    </fieldset>
+    <fieldset class="popup__profession-field">
+    <input type="text" value="Исследователь океана" class="jobInput">    
+    </fieldset>
+    <fieldset class="popup__submit-btn">
+    <input type="submit" value="Сохранить" class="popup__submit-btn-txt">
+    </fieldset>
+    </form>
+</div>
+<script src="./script/index.js"></script>
 </body>
 
 </html>
