@@ -9,4 +9,4 @@
 5. ### *Организация файловой структуры по правилам Nested БЭМ*.
 6. ### *Javascript*
 ### Ссылка на GitHub Pages:
-* ### https://mishaninsi.github.io/russian-travel/
+* ### https://mishaninsi.github.io/mesto/
