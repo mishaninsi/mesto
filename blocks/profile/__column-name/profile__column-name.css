@@ -3,10 +3,13 @@
     margin-top: 22px;
     margin-bottom: 0;
     padding: 0;
+    max-width: 100%;
     font-style: normal;
     font-weight: 500;
     font-size: 42px;
     line-height: 48px;
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: #FFFFFF;
 }
 
@@ -16,13 +19,13 @@
     line-height: 33px;
     letter-spacing: 0em;
     text-align: center;
-        
-    }
+}
 }
 
 @media screen and (max-width: 320px) {
     .profile__column-name {
+    margin: auto;
     margin-top: 26px;
-    margin-left: 15px;
-    }
+    max-width: 189px;
+}
 }

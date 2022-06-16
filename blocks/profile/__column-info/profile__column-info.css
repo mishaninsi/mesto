@@ -9,6 +9,7 @@
         "profession profession";
     column-gap: 18px;
     row-gap: 7px;
+    
 }
 
 @media screen and (max-width: 850px) {
@@ -25,8 +26,9 @@
 
 @media screen and (max-width: 320px) {
     .profile__column-info {
-    margin:0;
-    column-gap: 10px;
-    row-gap: 6px;
+    margin: auto;
+    column-gap: 15px;
+    row-gap: 5px;
+    max-width: 189px;
     }
 }

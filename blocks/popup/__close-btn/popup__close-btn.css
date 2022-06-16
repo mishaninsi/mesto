@@ -3,10 +3,12 @@ margin-top: 155px;
 margin-left: calc((863/1280)*100%);
 width: 32px;
 height: 32px;
+background-color: black;
 background-image: url(../../../images/Close\ Icon.png);
 background-position: center;
 background-repeat: no-repeat;
 box-sizing: border-box;
+border: black;
 }
 
 .popup__close-btn:hover {

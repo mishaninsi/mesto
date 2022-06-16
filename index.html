@@ -18,16 +18,17 @@
         <div class="header__logo">
         </div>
     </header>
+<main class="content">
     <div class="profile">
         <div class="profile__column">
             <img class="profile__column-avatar" src="images/avatar.jpg" alt="аватар">
             <div class="profile__column-info">
                 <p class="profile__column-name">Жак-Ив Кусто</p>
-                <div class="profile__column-button"></div>
+                <button type="button" class="profile__column-button"></button>
                 <p class="profile__column-profession">Исследователь океана</p>
             </div>
         </div>
-    <div class="profile__addbutton"></div>
+    <button class="profile__addbutton"></button>
     </div>
     <div class="elements">
         <div class="element">
@@ -61,20 +62,21 @@
             <div class="element__like"></div>
         </div>
     </div>
+</main>
     <footer class="footer">
         <p class="footer__copyright">&copy;2022 Mesto Russia</p>
     </footer>
 </div>
 </div>
 <div class="popup"> <!--popup_opened-->
-    <div class="popup__close-btn"></div>
+    <button type="button" class="popup__close-btn"></button>
     <form class="popup__container">
     <h3 class="popup__title">Редактировать профиль</h3>
     <fieldset class="popup__name-field">
-    <input type="text" value="Жак-Ив Кусто" class="nameInput">
+    <input type="text" value="Жак-Ив Кусто" class="name-input">
     </fieldset>
     <fieldset class="popup__profession-field">
-    <input type="text" value="Исследователь океана" class="jobInput">    
+    <input type="text" value="Исследователь океана" class="job-input">    
     </fieldset>
     <fieldset class="popup__submit-btn">
     <input type="submit" value="Сохранить" class="popup__submit-btn-txt">

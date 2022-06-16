@@ -14,23 +14,17 @@ function closePopup(event) {
     popup.classList.remove('popup_opened')
         }
 
+let profileName = document.querySelector('.profile__column-name');
+let profileProfession = document.querySelector('.profile__column-profession');
 let formElement = document.querySelector('.popup__container');
-let nameInput = document.querySelector('.nameInput');
-let jobInput = document.querySelector('.jobInput');
+let nameInput = formElement.querySelector('.name-input');
+let jobInput = formElement.querySelector('.job-input');
 
-
-function formSubmitHandler (evt) {
-    evt.preventDefault();
-
-let nameView = nameInput.value;
-let jobView = jobInput.value;
-
-let newName = document.querySelector('.profile__column-name');
-newName.textContent = (nameView);
-
-let newJob = document.querySelector('.profile__column-profession');
-newJob.textContent = (jobView);
-
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileProfession.textContent = jobInput.value;
+  closePopup()
 }
 
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler)
