@@ -1,5 +1,8 @@
 .element__like {
     grid-area: like;
+    padding: 0;
+    border-style: none;
+    background-color: white;
     display: flex;
     width: 22px;
     height: 19px;
