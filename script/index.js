@@ -22,6 +22,8 @@ let nameInput = formElement.querySelector('.popup__input_field_name');
 let jobInput = formElement.querySelector('.popup__input_field_job');
 
 
+
+
 function openPopup(event) {
     nameInput.value = profileName.textContent;
     jobInput.value = profileProfession.textContent;
@@ -82,8 +84,26 @@ const initialCards = [
 
   initialCards.forEach(function(newcard){
   const card = cardsTemplate.cloneNode(true);
-  console.log(newcard.title);
+  
   card.querySelector('.element__place-name').textContent = newcard.name;
   card.querySelector('.element__photo').src = newcard.link;
   elements.append(card);
   });
+
+  let placeName = document.querySelector('.element__place-name');
+  console.log(placeName.textContent);
+  let placeLink = document.querySelector('.element__photo');
+  console.log(placeLink.src);
+  let formPlace = document.querySelector('.popup__container_place');
+  console.log(formPlace);
+  let placeInput = formPlace.querySelector('.popup__input_field_place');
+  let linkInput = formPlace.querySelector('.popup__input_field_link');
+
+  function formPlaceSubmitHandler(evt) {
+    evt.preventDefault();
+    placeName.textContent = placeInput.value;
+    placeLink.src = linkInput.value;
+    closePopupPlace()
+  }
+
+  formPlace.addEventListener('submit', formPlaceSubmitHandler)
