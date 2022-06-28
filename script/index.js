@@ -87,6 +87,10 @@ const initialCards = [
   
   card.querySelector('.element__place-name').textContent = newcard.name;
   card.querySelector('.element__photo').src = newcard.link;
+  const likeButton = card.querySelector('.element__like')
+  likeButton.addEventListener('click', function (evt){
+    evt.target.classList.toggle('element__like_active');
+    });
   elements.append(card);
   });
 
@@ -107,3 +111,8 @@ const initialCards = [
   }
 
   formPlace.addEventListener('submit', formPlaceSubmitHandler)
+
+  
+  
+   
+  
