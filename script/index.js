@@ -106,7 +106,14 @@ initialCards.forEach(function (newcard) {
         elementDelete.remove();
     });
     card.querySelector('.element__photo').addEventListener('click', function (evt) {
-        popupphoto.classList.add('popup_opened');   
+        popupphoto.classList.add('popup_opened');
+        const targetPhoto = evt.target;
+        const popupImage = document.querySelector('.popup__image');
+        popupImage.src = targetPhoto.src;
+        const popupTitleImage = document.querySelector('.popup__place-name');
+        const targetTitleImage = evt.target.closest('.element').textContent;
+        popupTitleImage.textContent = targetTitleImage;
+
     })
     elements.append(card);
 });
