@@ -1,6 +1,6 @@
 .popup__close-btn {
 margin-top: 155px;
-margin-left: calc((863/1280)*100%);
+align-self: end;
 width: 32px;
 height: 32px;
 background-color: black;

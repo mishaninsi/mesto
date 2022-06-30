@@ -1,0 +1,12 @@
+.popup__container-photo {
+display: grid;
+margin: auto;
+max-width: min-content;
+
+grid-template-columns: min-content;
+grid-template-rows: min-content min-content min-content;
+grid-template-areas:
+        "btn"
+        "photo"
+        "title";
+}

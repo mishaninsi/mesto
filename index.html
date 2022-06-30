@@ -38,6 +38,7 @@
     </footer>
 </div>
 <section class="popup"> <!--popup_opened-->
+    <div class="popup__style">
     <button type="button" class="popup__close-btn"></button>
     <form name="profile-form" class="popup__container">
     <h3 class="popup__title">Редактировать профиль</h3>
@@ -51,8 +52,10 @@
     <input type="submit" value="Сохранить" class="popup__submit-btn-txt">
     </fieldset>
     </form>
+</div>
 </section>
 <section class="popup popup_place">
+    <div class="popup__style">
     <button type="button" class="popup__close-btn popup__close-btn_place"></button>
     <form name="newplace-form" class="popup__container popup__container_place">
     <h3 class="popup__title popup__title_place">Новое место</h3>
@@ -66,11 +69,14 @@
     <input type="submit" value="Создать" class="popup__submit-btn-txt popup__submit-btn-txt_place">
     </fieldset>
     </form>
+    </div>
 </section>
 <section class="popup popup_photo">
+    <div class="popup__style popup__style_photo">
     <button type="button" class="popup__close-btn popup__close-btn_photo"></button>
     <img class="popup__image">
     <p class="popup__place-name"></p>
+    </div>
 </section>
 <template id="Cards">
     
