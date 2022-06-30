@@ -4,7 +4,7 @@
     grid-area: photo;
     width: 282px;
     height: 282px;
-    object-fit: contain;
+    object-fit: cover;
     z-index: 1;
     border-radius: 10px 10px 0px 0px;
 }
