@@ -1,6 +1,9 @@
 .popup__close-btn_photo {
-grid-area: btn;
-margin-top: 50px;
-align-self: flex-end;
 margin-right: -40px;
+}
+
+@media screen and (max-width: 320px) {
+    .popup__close-btn_photo {
+margin-right: 0;
+}
 }
