@@ -9,6 +9,7 @@ background-position: center;
 background-repeat: no-repeat;
 box-sizing: border-box;
 border: black;
+cursor: pointer;
 }
 
 .popup__close-btn:hover {

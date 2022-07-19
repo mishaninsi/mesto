@@ -173,7 +173,7 @@ const isValid = (formElement, inputElement, settings) => {
       // Обойдём все элементы полученной коллекции
     inputList.forEach((inputElement) => {
       // каждому полю добавим обработчик события input
-      inputElement.addEventListener('input', function (settings) {
+      inputElement.addEventListener('input', function () {
         // Внутри колбэка вызовем isValid,
         // передав ей форму и проверяемый элемент
         isValid(formElement, inputElement, settings)
@@ -252,7 +252,7 @@ popups.forEach(function(item){
 //включение валидации вызовом enableValidation
 
 enableValidation({
-    formSelector: '.poupup__form',
+    formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit-btn',
     inputErrorClass: 'input__error_type',

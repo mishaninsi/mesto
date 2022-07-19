@@ -12,6 +12,7 @@ background-size: contain;
 background-position: center;
 background-repeat: no-repeat;
 z-index: 1;
+cursor: pointer;
 }
 
 .element__thrash:hover {
