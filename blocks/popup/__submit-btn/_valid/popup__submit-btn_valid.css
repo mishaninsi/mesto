@@ -1,0 +1,8 @@
+.popup__submit-btn_valid {
+    background-color: black;
+        
+        }
+        
+    .popup__submit-btn_valid:hover {
+    opacity: 0.6; 
+        }
