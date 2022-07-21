@@ -8,9 +8,9 @@ const popupImage = document.querySelector('.popup__image');
 const closeButtons = document.querySelectorAll('.popup__close-btn');
 const profileName = document.querySelector('.profile__column-name');
 const profileProfession = document.querySelector('.profile__column-profession');
-const formElement = document.querySelector('.popup__form-user');
-const nameInput = formElement.querySelector('.popup__input_field_name');
-const jobInput = formElement.querySelector('.popup__input_field_job');
+const formprofileElement = document.querySelector('.popup__form-user');
+const nameInput = formprofileElement.querySelector('.popup__input_field_name');
+const jobInput = formprofileElement.querySelector('.popup__input_field_job');
 const cardsTemplate = document.querySelector('#cards').content;
 const elements = document.querySelector('.elements');
 const placeName = document.querySelector('.element__place-name');
@@ -51,7 +51,7 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfile)
 }
 
-formElement.addEventListener('submit', handleProfileFormSubmit);
+formprofileElement.addEventListener('submit', handleProfileFormSubmit);
 
 function renderItems() {
     initialCards.forEach(renderCard);
