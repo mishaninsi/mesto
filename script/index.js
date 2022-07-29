@@ -53,7 +53,7 @@ function handleProfileFormSubmit(evt) {
 
 formprofileElement.addEventListener('submit', handleProfileFormSubmit);
 
-function renderItems() {
+/* function renderItems() {
     initialCards.forEach(renderCard);
 };
 
@@ -90,7 +90,7 @@ function renderCard(card) {
     elements.prepend(createCard(card));
 };
 
-renderItems();
+renderItems(); */
 
 function handlePlaceFormSubmit(evt) {
     evt.preventDefault();
@@ -121,3 +121,33 @@ popups.forEach(function (item) {
         }
     })
 })
+
+//const data = {name: placeInput.value, link: linkInput.value};
+
+
+
+
+
+class Card {
+    constructor (name, link) {
+        this._name = name;
+        this._link = link;
+        
+    }
+    _getTemplate() {
+            const cardSelector = cardsTemplate.querySelector('.element').cloneNode(true);
+            return cardSelector;
+    }
+    generateCard() {
+            this._element = this._getTemplate();
+            this._element.querySelector('.element__photo').src = this._link;
+            this._element.querySelector('.element__place-name').textContent = this._name;
+            return this._element;
+    }
+}
+initialCards.forEach((item) => {
+    const card = new Card(item.name, item.link);
+    const cardElement = card.generateCard();
+     
+    document.querySelector('.elements').append(cardElement);
+  });
