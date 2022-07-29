@@ -129,24 +129,25 @@ popups.forEach(function (item) {
 
 
 class Card {
-    constructor (name, link) {
-        this._name = name;
-        this._link = link;
-        
+    constructor (data, templateSelector) {
+        this._name = data.name;
+        this._link = data.link;
+        this._templateSelector = templateSelector;
     }
     _getTemplate() {
-            const cardSelector = cardsTemplate.querySelector('.element').cloneNode(true);
-            return cardSelector;
+            const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
+            return cardElement;
     }
     generateCard() {
             this._element = this._getTemplate();
             this._element.querySelector('.element__photo').src = this._link;
             this._element.querySelector('.element__place-name').textContent = this._name;
+            this._element.querySelector('.element__photo').alt = this._name;
             return this._element;
     }
 }
 initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link);
+    const card = new Card(item, '#cards');
     const cardElement = card.generateCard();
      
     document.querySelector('.elements').append(cardElement);
