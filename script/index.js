@@ -141,6 +141,7 @@ class Card {
     generateCard() {
             this._element = this._getTemplate();
             this._setEventListeners();
+            this.handleCardClick();
             this._element.querySelector('.element__photo').src = this._link;
             this._element.querySelector('.element__place-name').textContent = this._name;
             this._element.querySelector('.element__photo').alt = this._name;
@@ -151,10 +152,30 @@ class Card {
         likeButton.classList.toggle('element__like_active');
         
     }
+    _handleTrashButton() {
+        const elementDelete = this._element;
+        elementDelete.remove();
+
+    }
     _setEventListeners() {
-        this._element.addEventListener('click', () => {
+       this._element.querySelector('.element__like').addEventListener('click', () => {
             this._handleLikeButton();
         });
+        this._element.querySelector('.element__thrash').addEventListener('click', () => {
+            this._handleTrashButton();
+        });
+        
+    }
+    handleCardClick(name, link) {
+        const popupImage = this._element.querySelector('.element__photo')
+        name = this._name;
+        link = this._link;
+        popupImage.addEventListener('click', function (evt) {
+            openPopup(popupPhoto);
+        document.querySelector('.popup__image').src = link;
+        document.querySelector('.popup__place-name').textContent=name
+        
+        }) 
     }
 }
 initialCards.forEach((item) => {
@@ -163,3 +184,4 @@ initialCards.forEach((item) => {
      
     document.querySelector('.elements').append(cardElement);
   });
+  
