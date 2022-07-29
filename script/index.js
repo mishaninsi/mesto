@@ -140,10 +140,21 @@ class Card {
     }
     generateCard() {
             this._element = this._getTemplate();
+            this._setEventListeners();
             this._element.querySelector('.element__photo').src = this._link;
             this._element.querySelector('.element__place-name').textContent = this._name;
             this._element.querySelector('.element__photo').alt = this._name;
             return this._element;
+    }
+    _handleLikeButton() {
+        const likeButton = this._element.querySelector('.element__like');
+        likeButton.classList.toggle('element__like_active');
+        
+    }
+    _setEventListeners() {
+        this._element.addEventListener('click', () => {
+            this._handleLikeButton();
+        });
     }
 }
 initialCards.forEach((item) => {
