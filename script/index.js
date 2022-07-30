@@ -86,21 +86,15 @@ function createCard(newCard) {
 
 };
 
-function renderCard(card) {
-    elements.prepend(createCard(card));
+function renderCard() {
+    const card = new Card('#cards');
+    const cardElement = card.generateCard();
+    elements.prepend(cardElement);
 };
 
-renderItems(); */
+//renderItems(); */
 
-function handlePlaceFormSubmit(evt) {
-    evt.preventDefault();
-    renderCard({ name: placeInput.value, link: linkInput.value })
-    placeInput.value = '';
-    linkInput.value = '';
-    popupPlaceSubmitBtnInactive.classList.add('popup__submit-btn_invalid');
-    popupPlaceSubmitBtnInactive.setAttribute('disabled', true);
-    closePopup(popupPlace);
-}
+
 
 formPlace.addEventListener('submit', handlePlaceFormSubmit);
 
@@ -122,7 +116,7 @@ popups.forEach(function (item) {
     })
 })
 
-//const data = {name: placeInput.value, link: linkInput.value};
+
 
 
 
@@ -175,7 +169,7 @@ class Card {
         document.querySelector('.popup__image').src = link;
         document.querySelector('.popup__place-name').textContent=name
         
-        }) 
+        })
     }
 }
 initialCards.forEach((item) => {
@@ -185,3 +179,19 @@ initialCards.forEach((item) => {
     document.querySelector('.elements').append(cardElement);
   });
   
+  function addCard () {
+  const data = {name: placeInput.value, link: linkInput.value};
+  const cardSelector = '#cards';
+  const generateCard = new Card(data, cardSelector);
+  const renderCard  = generateCard.generateCard();
+  document.querySelector('.elements').append(renderCard);
+  }
+    function handlePlaceFormSubmit(evt) {
+    evt.preventDefault();
+    addCard()
+    placeInput.value = '';
+    linkInput.value = '';
+    popupPlaceSubmitBtnInactive.classList.add('popup__submit-btn_invalid');
+    popupPlaceSubmitBtnInactive.setAttribute('disabled', true);
+    closePopup(popupPlace);
+}
