@@ -195,3 +195,5 @@ initialCards.forEach((item) => {
     popupPlaceSubmitBtnInactive.setAttribute('disabled', true);
     closePopup(popupPlace);
 }
+
+
