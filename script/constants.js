@@ -19,6 +19,8 @@ export const formPlace = document.querySelector('.popup__container_place');
 export const placeInput = formPlace.querySelector('.popup__input_field_place');
 export const linkInput = formPlace.querySelector('.popup__input_field_link');
 export const popupPlaceSubmitBtnInactive = document.querySelector('.popup__place-btn');
+export const data = { name: placeInput.value, link: linkInput.value };
+export const cardSelector = '#cards';
 export const initialCards = [
     {
         name: 'Архыз',

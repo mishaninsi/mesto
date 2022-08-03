@@ -1,11 +1,10 @@
-import {popupProfileOpenButton} from './constants.js';
+import {elements, popupProfileOpenButton} from './constants.js';
 import {profileAddbutton} from './constants.js';
 import {closeButtons} from './constants.js';
 import {formprofileElement} from './constants.js';
 import {formPlace} from './constants.js';
 import {popups} from './constants.js';
-import {Card} from './Card.js';
-console.log(Card);
+import {Card} from './Card.js'; // при импорте этого класса с подключенными модулями Card, constants, Formvalidator в разметке, в консоли появляется ошибка (Uncaught ReferenceError: Cannot access 'Card' before initialization)
 import { FormValidator } from './FormValidator.js';
 import {settings} from './constants.js';
 import {popupPlace} from './constants.js';
@@ -17,6 +16,7 @@ import {popupProfile} from './constants.js';
 import {initialCards} from './constants.js';
 import {placeInput} from './constants.js';
 import {linkInput} from './constants.js';
+
 
 
 
@@ -64,30 +64,27 @@ formPlace.addEventListener('submit', handlePlaceFormSubmit);
 
 
 // функция добавления новой карточки из попапа место
-const addCard = () => {
-    const data = { name: placeInput.value, link: linkInput.value };
-    const cardSelector = '#cards';
-    const generateCard = new Card(data, cardSelector, openPopup, closePopup);
+const addCard = (name, link) => {
+    const generateCard = new Card(name, link, '#cards', openPopup, closePopup);
     const renderCard = generateCard.generateCard();
-    document.querySelector('.elements').append(renderCard);
+    elements.prepend(renderCard);
 };
 
 // функция загрузки карточек из массива
 const renderInitialCards = (array) => {
     array.forEach((item) => {
-      addCard();
+      addCard(item.name, item.link);
     })
   };
 
+  renderInitialCards(initialCards);
 
 //функция отправки формы редактирования места
 function handlePlaceFormSubmit(evt) {
     evt.preventDefault();
-    addCard()
-    placeInput.value = '';
-    linkInput.value = '';
-    popupPlaceSubmitBtnInactive.classList.add('popup__submit-btn_invalid');
-    popupPlaceSubmitBtnInactive.setAttribute('disabled', true);
+    addCard(placeInput.value, linkInput.value)
+    formPlace.reset();
+    placeProfileValidate._toggleButtonState();
     closePopup(popupPlace);
 }
 
@@ -108,7 +105,7 @@ popups.forEach(function (item) {
     })
 })
 
-renderInitialCards(initialCards);
+
 
 const formProfileValidate = new FormValidator (settings, formprofileElement)
 formProfileValidate.enableValidation();

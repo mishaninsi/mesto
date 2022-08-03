@@ -1,14 +1,11 @@
 
-import {initialCards} from './constants.js';
-import { openPopup } from './index.js';
-import { closePopup } from './index.js';
 import { popupPhoto } from './constants.js';
 
 
 export class Card {
-    constructor(data, templateSelector, openPopup, closePopup) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor(name, link, templateSelector, openPopup, closePopup) {
+        this._name = name;
+        this._link = link;
         this._templateSelector = templateSelector;
         this._openPopup = openPopup;
         this._closePopup = closePopup;
@@ -61,12 +58,5 @@ export class Card {
     }
     
 }
-/*
-initialCards.forEach((item) => {
-    const card = new Card(item, '#cards');
-    const cardElement = card.generateCard();
 
-    document.querySelector('.elements').append(cardElement);
-});
-*/
 
