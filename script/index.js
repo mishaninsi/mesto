@@ -1,48 +1,52 @@
-const popupProfileOpenButton = document.querySelector('.profile__column-button');
-const profileAddbutton = document.querySelector('.profile__addbutton');
-const popupProfile = document.querySelector('.popup_profile');
-export const popupPlace = document.querySelector('.popup_place');
-export const popupPhoto = document.querySelector('.popup_photo');
-const popups = document.querySelectorAll('.popup');
-const popupImage = document.querySelector('.popup__image');
-const closeButtons = document.querySelectorAll('.popup__close-btn');
-const profileName = document.querySelector('.profile__column-name');
-const profileProfession = document.querySelector('.profile__column-profession');
-const formprofileElement = document.querySelector('.popup__form-user');
-const nameInput = formprofileElement.querySelector('.popup__input_field_name');
-const jobInput = formprofileElement.querySelector('.popup__input_field_job');
-const cardsTemplate = document.querySelector('#cards').content;
-const elements = document.querySelector('.elements');
-const placeName = document.querySelector('.element__place-name');
-const placeLink = document.querySelector('.element__photo');
-const formPlace = document.querySelector('.popup__container_place');
-export const placeInput = formPlace.querySelector('.popup__input_field_place');
-export const linkInput = formPlace.querySelector('.popup__input_field_link');
-export const popupPlaceSubmitBtnInactive = document.querySelector('.popup__place-btn');
+import {popupProfileOpenButton} from './constants.js';
+import {profileAddbutton} from './constants.js';
+import {closeButtons} from './constants.js';
+import {formprofileElement} from './constants.js';
+import {formPlace} from './constants.js';
+import {popups} from './constants.js';
+import {Card} from './Card.js';
+console.log(Card);
+import { FormValidator } from './FormValidator.js';
+import {settings} from './constants.js';
+import {popupPlace} from './constants.js';
+import {nameInput} from './constants.js';
+import {profileName} from './constants.js';
+import {jobInput} from './constants.js';
+import {profileProfession} from './constants.js';
+import {popupProfile} from './constants.js';
+import {initialCards} from './constants.js';
+import {placeInput} from './constants.js';
+import {linkInput} from './constants.js';
 
 
+
+// функция заполнения полей имени и професии в попапе профиля
 popupProfileOpenButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileProfession.textContent;
     openPopup(popupProfile)
 });
+
+// обработчик кнопки добавления места
 profileAddbutton.addEventListener('click', () => { openPopup(popupPlace) });
 
+//обработчки кнопки закрытия попапов
 closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
     button.addEventListener('click', () => closePopup(popup))
 });
 
+//функция открыти попапов
 export function openPopup(popup) {
     document.addEventListener('keydown', closePopupEsc);
     popup.classList.add('popup_opened')
 }
-
+//функция закрытия попапов
 export function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
 }
-
+//функция отправки формы редактирования профиля
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
@@ -51,9 +55,41 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfile)
 }
 
+//обработчик отправки формы попапа редактирования профиля 
 formprofileElement.addEventListener('submit', handleProfileFormSubmit);
 
+//обработчик отправки формы попапа редактирования места 
 formPlace.addEventListener('submit', handlePlaceFormSubmit);
+
+
+
+// функция добавления новой карточки из попапа место
+const addCard = () => {
+    const data = { name: placeInput.value, link: linkInput.value };
+    const cardSelector = '#cards';
+    const generateCard = new Card(data, cardSelector, openPopup, closePopup);
+    const renderCard = generateCard.generateCard();
+    document.querySelector('.elements').append(renderCard);
+};
+
+// функция загрузки карточек из массива
+const renderInitialCards = (array) => {
+    array.forEach((item) => {
+      addCard();
+    })
+  };
+
+
+//функция отправки формы редактирования места
+function handlePlaceFormSubmit(evt) {
+    evt.preventDefault();
+    addCard()
+    placeInput.value = '';
+    linkInput.value = '';
+    popupPlaceSubmitBtnInactive.classList.add('popup__submit-btn_invalid');
+    popupPlaceSubmitBtnInactive.setAttribute('disabled', true);
+    closePopup(popupPlace);
+}
 
 // Закрытие попапа через ESC
 function closePopupEsc(evt) {
@@ -72,15 +108,13 @@ popups.forEach(function (item) {
     })
 })
 
-import { FormValidator } from './FormValidator.js';
-import { Card } from './Cards.js';
-import {handlePlaceFormSubmit} from './Cards.js';
-import {settings} from './FormValidator.js';
+renderInitialCards(initialCards);
 
 const formProfileValidate = new FormValidator (settings, formprofileElement)
 formProfileValidate.enableValidation();
 const placeProfileValidate = new FormValidator (settings, formPlace)
 placeProfileValidate.enableValidation()
+
 
 
 

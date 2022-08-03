@@ -65,7 +65,7 @@
                     <span id="place-card-error" class="popup__error"></span>
                 </fieldset>
                 <fieldset class="popup__user-info popup__user-info_link">
-                    <input type="url" id="link-card" class="popup__input popup__input_field_link" name="link" placeholder="Ссылка на картинку">
+                    <input type="url" id="link-card" class="popup__input popup__input_field_link" name="link" minlength="9" required placeholder="Ссылка на картинку">
                     <span id="link-card-error" class="popup__error"></span>
                 </fieldset>
                 <button type="submit" class="popup__submit-btn popup__submit-btn-txt popup__place-btn">Создать</button>
@@ -89,7 +89,8 @@
         </div>
 
     </template>
-    <script type="module" src="./script/Cards.js"></script>
+    <script type="module" src="./script/constants.js"></script>
+    <script type="module" src="./script/Card.js"></script>
     <script type="module" src="./script/index.js"></script>
     <script type="module" src="./script/FormValidator.js"></script>
 </body>
