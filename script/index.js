@@ -1,7 +1,7 @@
 import {elements, popupProfileOpenButton} from './constants.js';
 import {profileAddbutton} from './constants.js';
 import {closeButtons} from './constants.js';
-import {formprofileElement} from './constants.js';
+import {formProfileElement} from './constants.js';
 import {formPlace} from './constants.js';
 import {popups} from './constants.js';
 import {Card} from './Card.js'; // при импорте этого класса с подключенными модулями Card, constants, Formvalidator в разметке, в консоли появляется ошибка (Uncaught ReferenceError: Cannot access 'Card' before initialization)
@@ -56,7 +56,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 //обработчик отправки формы попапа редактирования профиля 
-formprofileElement.addEventListener('submit', handleProfileFormSubmit);
+formProfileElement.addEventListener('submit', handleProfileFormSubmit);
 
 //обработчик отправки формы попапа редактирования места 
 formPlace.addEventListener('submit', handlePlaceFormSubmit);
@@ -84,7 +84,7 @@ function handlePlaceFormSubmit(evt) {
     evt.preventDefault();
     addCard(placeInput.value, linkInput.value)
     formPlace.reset();
-    placeProfileValidate._toggleButtonState();
+    placeProfileValidate.toggleButtonState();
     closePopup(popupPlace);
 }
 
@@ -107,7 +107,7 @@ popups.forEach(function (item) {
 
 
 
-const formProfileValidate = new FormValidator (settings, formprofileElement)
+const formProfileValidate = new FormValidator (settings, formProfileElement)
 formProfileValidate.enableValidation();
 const placeProfileValidate = new FormValidator (settings, formPlace)
 placeProfileValidate.enableValidation()

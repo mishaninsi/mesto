@@ -61,7 +61,7 @@
             <form name="newplace-form" class="popup__form popup__container popup__container_place popup__form-place" novalidate>
                 <h3 class="popup__title popup__title_place">Новое место</h3>
                 <fieldset class="popup__user-info popup__user-info_place">
-                    <input type="text" id="place-card" class="popup__input popup__input_field_place" name="place" required placeholder="Название">
+                    <input type="text" id="place-card" class="popup__input popup__input_field_place" name="place" minlength="2" maxlength="30" required placeholder="Название">
                     <span id="place-card-error" class="popup__error"></span>
                 </fieldset>
                 <fieldset class="popup__user-info popup__user-info_link">

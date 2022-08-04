@@ -1,5 +1,6 @@
-
 import { popupPhoto } from './constants.js';
+import {popupImage } from './constants.js';
+import {popupPlaceName} from './constants.js';
 
 
 export class Card {
@@ -16,16 +17,16 @@ export class Card {
     }
     generateCard() {
         this._element = this._getTemplate();
+        this._likeButton = this._element.querySelector('.element__like');
+        this._photoCard = this._element.querySelector('.element__photo')
         this._setEventListeners();
-        
         this._element.querySelector('.element__photo').src = this._link;
         this._element.querySelector('.element__place-name').textContent = this._name;
         this._element.querySelector('.element__photo').alt = this._name;
         return this._element;
     }
     _handleLikeButton() {
-        const likeButton = this._element.querySelector('.element__like');
-        likeButton.classList.toggle('element__like_active');
+        this._likeButton.classList.toggle('element__like_active');
 
     }
     _handleTrashButton() {
@@ -35,23 +36,22 @@ export class Card {
     }
 
     handleCardClick(name, link) {
-        const photoCard = this._element.querySelector('.element__photo')
         name = this._name;
         link = this._link;
         this._openPopup(popupPhoto);
-        document.querySelector('.popup__image').src = link;
-        document.querySelector('.popup__image').alt = name;
-        document.querySelector('.popup__place-name').textContent = name
+        popupImage.src = link;
+        popupImage.alt = name;
+        popupPlaceName.textContent = name
         
     }
     _setEventListeners() {
-        this._element.querySelector('.element__like').addEventListener('click', () => {
+        this._likeButton.addEventListener('click', () => {
             this._handleLikeButton();
         });
         this._element.querySelector('.element__thrash').addEventListener('click', () => {
             this._handleTrashButton();
         });
-        this._element.querySelector('.element__photo').addEventListener('click', () => {
+        this._photoCard.addEventListener('click', () => {
             this.handleCardClick();
         })
 
