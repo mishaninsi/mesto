@@ -4,8 +4,6 @@ import {closeButtons} from './constants.js';
 import {formProfileElement} from './constants.js';
 import {formPlace} from './constants.js';
 import {popups} from './constants.js';
-import {Card} from './Card.js'; // при импорте этого класса с подключенными модулями Card, constants, Formvalidator в разметке, в консоли появляется ошибка (Uncaught ReferenceError: Cannot access 'Card' before initialization)
-import { FormValidator } from './FormValidator.js';
 import {settings} from './constants.js';
 import {popupPlace} from './constants.js';
 import {nameInput} from './constants.js';
@@ -16,6 +14,9 @@ import {popupProfile} from './constants.js';
 import {initialCards} from './constants.js';
 import {placeInput} from './constants.js';
 import {linkInput} from './constants.js';
+import Section from './Section.js'
+import {Card} from './Card.js'; // при импорте этого класса с подключенными модулями Card, constants, Formvalidator в разметке, в консоли появляется ошибка (Uncaught ReferenceError: Cannot access 'Card' before initialization)
+import { FormValidator } from './FormValidator.js';
 
 
 
@@ -62,7 +63,7 @@ formProfileElement.addEventListener('submit', handleProfileFormSubmit);
 formPlace.addEventListener('submit', handlePlaceFormSubmit);
 
 
-
+/*
 // функция добавления новой карточки из попапа место
 const addCard = (name, link) => {
     const generateCard = new Card(name, link, '#cards', openPopup, closePopup);
@@ -78,7 +79,7 @@ const renderInitialCards = (array) => {
   };
 
   renderInitialCards(initialCards);
-
+*/
 //функция отправки формы редактирования места
 function handlePlaceFormSubmit(evt) {
     evt.preventDefault();
@@ -111,6 +112,19 @@ const formProfileValidate = new FormValidator (settings, formProfileElement)
 formProfileValidate.enableValidation();
 const placeProfileValidate = new FormValidator (settings, formPlace)
 placeProfileValidate.enableValidation()
+
+//создание карточек массива через класс Section
+const cardList = new Section ({
+    items: initialCards,
+    renderer: (item) => {
+        const generateCard = new Card(item.name, item.link, '#cards', openPopup, closePopup);
+        const renderCard = generateCard.generateCard();
+        cardList.addItem(renderCard);        
+    },
+}, elements);
+
+//загрузка карточек массива
+cardList.renderedItems();
 
 
 
