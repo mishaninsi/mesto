@@ -1,9 +1,9 @@
-import {elements, popupProfileOpenButton} from './constants.js';
+import {elements} from './constants.js';
 import {profileAddbutton} from './constants.js';
 import {closeButtons} from './constants.js';
 import {formProfileElement} from './constants.js';
 import {formPlace} from './constants.js';
-import {popups} from './constants.js';
+import {popupProfileOpenButton} from './constants.js';
 import {settings} from './constants.js';
 import {popupPlace} from './constants.js';
 import {nameInput} from './constants.js';
@@ -14,22 +14,22 @@ import {popupProfile} from './constants.js';
 import {initialCards} from './constants.js';
 import {placeInput} from './constants.js';
 import {linkInput} from './constants.js';
+import { openPopup } from './utils.js';
+import { closePopup } from './utils.js';
+import {handleProfileFormSubmit} from './utils.js';
+import {handlePlaceFormSubmit} from './utils.js';
+import {PopupProfileFormInput} from './utils.js';
 import Section from './Section.js'
-import {Card} from './Card.js'; // при импорте этого класса с подключенными модулями Card, constants, Formvalidator в разметке, в консоли появляется ошибка (Uncaught ReferenceError: Cannot access 'Card' before initialization)
+import {Card} from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import Popup from './Popup.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 
-
-
-// функция заполнения полей имени и професии в попапе профиля
-popupProfileOpenButton.addEventListener('click', () => {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileProfession.textContent;
-    openPopup(popupProfile)
-});
 
 // обработчик кнопки добавления места
-profileAddbutton.addEventListener('click', () => { openPopup(popupPlace) });
+//profileAddbutton.addEventListener('click', () => { openPopup(popupPlace) });
 
 //обработчки кнопки закрытия попапов
 closeButtons.forEach((button) => {
@@ -37,24 +37,6 @@ closeButtons.forEach((button) => {
     button.addEventListener('click', () => closePopup(popup))
 });
 
-//функция открыти попапов
-export function openPopup(popup) {
-    document.addEventListener('keydown', closePopupEsc);
-    popup.classList.add('popup_opened')
-}
-//функция закрытия попапов
-export function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupEsc);
-}
-//функция отправки формы редактирования профиля
-function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileProfession.textContent = jobInput.value;
-    
-    closePopup(popupProfile)
-}
 
 //обработчик отправки формы попапа редактирования профиля 
 formProfileElement.addEventListener('submit', handleProfileFormSubmit);
@@ -64,12 +46,7 @@ formPlace.addEventListener('submit', handlePlaceFormSubmit);
 
 
 /*
-// функция добавления новой карточки из попапа место
-const addCard = (name, link) => {
-    const generateCard = new Card(name, link, '#cards', openPopup, closePopup);
-    const renderCard = generateCard.generateCard();
-    elements.prepend(renderCard);
-};
+
 
 // функция загрузки карточек из массива
 const renderInitialCards = (array) => {
@@ -81,36 +58,17 @@ const renderInitialCards = (array) => {
   renderInitialCards(initialCards);
 */
 //функция отправки формы редактирования места
-function handlePlaceFormSubmit(evt) {
-    evt.preventDefault();
-    addCard(placeInput.value, linkInput.value)
-    formPlace.reset();
-    placeProfileValidate.toggleButtonState();
-    closePopup(popupPlace);
-}
 
-// Закрытие попапа через ESC
-function closePopupEsc(evt) {
-    if (evt.key === 'Escape') {
-        const popupActive = document.querySelector('.popup_opened');
-        closePopup(popupActive);
-    }
-}
 
-//Закрытие попапа на оверлей
-popups.forEach(function (item) {
-    item.addEventListener('mousedown', (event) => {
-        if (event.target === event.currentTarget) {
-            closePopup(item)
-        }
-    })
-})
+
+
+
 
 
 
 const formProfileValidate = new FormValidator (settings, formProfileElement)
 formProfileValidate.enableValidation();
-const placeProfileValidate = new FormValidator (settings, formPlace)
+export const placeProfileValidate = new FormValidator (settings, formPlace)
 placeProfileValidate.enableValidation()
 
 //создание карточек массива через класс Section
@@ -126,7 +84,48 @@ const cardList = new Section ({
 //загрузка карточек массива
 cardList.renderedItems();
 
+//попап добавления новой карточки через PopupWithForm
 
+const addCardPopup = new PopupWithForm({
+    popupSelector: '.popup_place',
+    handleFormSubmit: (formData) => {
+        cardList.addItem(addCard(formData));
+        addCardPopup.close();
+    }
+});
+// слушатель для функционала открытия попапа через PopupWithForm
+addCardPopup.setEventListeners();
+
+profileAddbutton.addEventListener('click', () => {
+    addCardPopup.open();
+    console.log (addCardPopup.open())
+})
+
+const userInfo = new UserInfo({
+    username: '.profile__column-name',
+    userjob: '.profile__column-profession'
+  });
+
+// попап редактирования профиля
+const editProfilePopup = new PopupWithForm({
+    popupSelector: '.popup_profile',
+    handleFormSubmit: (formData) => {
+        userInfo.setUserInfo(formData);
+        editProfilePopup.close();
+    }
+});
+
+editProfilePopup.setEventListeners();
+
+// Обработчик редактирования попапа профиля
+popupProfileOpenButton.addEventListener('click', () => {
+  const info = userInfo.getUserInfo();
+  PopupProfileFormInput({
+  username: info.username,
+  userjob: info.userjob
+  });
+  editProfilePopup.open();
+});
 
 
 
