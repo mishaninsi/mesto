@@ -50,7 +50,13 @@ viewImagePopup.setEventListeners();
 
 // создание новой карточки
 const addCard = (data) => {
-    const generateCard = new Card({data},'#cards', openPopup, closePopup);
+    const generateCard = new Card({
+        data:data,
+        handleCardClick: (name, link) => {
+      const viewImagePopup = new PopupWithImage('.popup_photo');
+      viewImagePopup.setEventListeners();
+      viewImagePopup.open(name, link);
+        }},'#cards');
     const renderCard = generateCard.generateCard();
     return renderCard;
 };

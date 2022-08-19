@@ -4,12 +4,11 @@ import {popupPlaceName} from './constants.js';
 
 
 export class Card {
-    constructor({data}, templateSelector, openPopup, closePopup) {
+    constructor({data, handleCardClick}, templateSelector) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._openPopup = openPopup;
-        this._closePopup = closePopup;
+        this._handleCardClick = handleCardClick
         
         
     }
@@ -36,7 +35,10 @@ export class Card {
         this._element = null;
 
     }
-
+    _handleOpenPopup() {
+        this._handleCardClick(this._name, this._link);
+    }
+/*
     handleCardClick(name, link) {
         name = this._name;
         link = this._link;
@@ -46,7 +48,7 @@ export class Card {
         popupPlaceName.textContent = name
         
     }
-    
+    */
     _setEventListeners() {
         this._likeButton.addEventListener('click', () => {
             this._handleLikeButton();
@@ -55,7 +57,7 @@ export class Card {
             this._handleTrashButton();
         });
         this._photoCard.addEventListener('click', () => {
-            this.handleCardClick();
+            this._handleOpenPopup();
         })
 
     }
