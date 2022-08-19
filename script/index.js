@@ -45,9 +45,12 @@ formProfileValidate.enableValidation();
 export const placeProfileValidate = new FormValidator (settings, formPlace)
 placeProfileValidate.enableValidation()
 
+const viewImagePopup = new PopupWithImage('.popup_photo');
+viewImagePopup.setEventListeners();
+
 // создание новой карточки
 const addCard = (data) => {
-    const generateCard = new Card(data.name, data.link,'#cards', openPopup, closePopup);
+    const generateCard = new Card({data},'#cards', openPopup, closePopup);
     const renderCard = generateCard.generateCard();
     return renderCard;
 };
@@ -56,9 +59,7 @@ const addCard = (data) => {
 const cardList = new Section ({
     items: initialCards,
     renderer: (item) => {
-        const generateCard = new Card(item.name, item.link, '#cards', openPopup, closePopup);
-        const renderCard = generateCard.generateCard();
-        cardList.addItem(renderCard);        
+        cardList.addItem(addCard(item));        
     },
 }, elements);
 //загрузка карточек массива

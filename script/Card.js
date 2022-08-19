@@ -4,9 +4,9 @@ import {popupPlaceName} from './constants.js';
 
 
 export class Card {
-    constructor(name, link, templateSelector, openPopup, closePopup) {
-        this._name = name;
-        this._link = link;
+    constructor({data}, templateSelector, openPopup, closePopup) {
+        this._name = data.name;
+        this._link = data.link;
         this._templateSelector = templateSelector;
         this._openPopup = openPopup;
         this._closePopup = closePopup;
