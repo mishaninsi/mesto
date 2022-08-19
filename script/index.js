@@ -16,19 +16,20 @@ import {placeInput} from './constants.js';
 import {linkInput} from './constants.js';
 import { openPopup } from './utils.js';
 import { closePopup } from './utils.js';
-import {handleProfileFormSubmit} from './utils.js';
-import {handlePlaceFormSubmit} from './utils.js';
+//import {handleProfileFormSubmit} from './utils.js';
+//import {handlePlaceFormSubmit} from './utils.js';
 import {PopupProfileFormInput} from './utils.js';
+
 import Section from './Section.js'
 import {Card} from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import Popup from './Popup.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
-
-
+import PopupWithImage from './PopupWithImage.js';
 
 // обработчик кнопки добавления места
+//profileAddbutton.addEventListener('click', () => { openPopup(popupPlace) });
 //profileAddbutton.addEventListener('click', () => { openPopup(popupPlace) });
 
 //обработчки кнопки закрытия попапов
@@ -38,38 +39,18 @@ closeButtons.forEach((button) => {
 });
 
 
-//обработчик отправки формы попапа редактирования профиля 
-formProfileElement.addEventListener('submit', handleProfileFormSubmit);
-
-//обработчик отправки формы попапа редактирования места 
-formPlace.addEventListener('submit', handlePlaceFormSubmit);
-
-
-/*
-
-
-// функция загрузки карточек из массива
-const renderInitialCards = (array) => {
-    array.forEach((item) => {
-      addCard(item.name, item.link);
-    })
-  };
-
-  renderInitialCards(initialCards);
-*/
-//функция отправки формы редактирования места
-
-
-
-
-
-
-
-
 const formProfileValidate = new FormValidator (settings, formProfileElement)
 formProfileValidate.enableValidation();
+
 export const placeProfileValidate = new FormValidator (settings, formPlace)
 placeProfileValidate.enableValidation()
+
+// создание новой карточки
+const addCard = (data) => {
+    const generateCard = new Card(data.name, data.link,'#cards', openPopup, closePopup);
+    const renderCard = generateCard.generateCard();
+    return renderCard;
+};
 
 //создание карточек массива через класс Section
 const cardList = new Section ({
@@ -80,7 +61,6 @@ const cardList = new Section ({
         cardList.addItem(renderCard);        
     },
 }, elements);
-
 //загрузка карточек массива
 cardList.renderedItems();
 
@@ -126,6 +106,18 @@ popupProfileOpenButton.addEventListener('click', () => {
   });
   editProfilePopup.open();
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

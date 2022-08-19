@@ -10,6 +10,8 @@ export class Card {
         this._templateSelector = templateSelector;
         this._openPopup = openPopup;
         this._closePopup = closePopup;
+        
+        
     }
     _getTemplate() {
         const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
@@ -44,6 +46,7 @@ export class Card {
         popupPlaceName.textContent = name
         
     }
+    
     _setEventListeners() {
         this._likeButton.addEventListener('click', () => {
             this._handleLikeButton();

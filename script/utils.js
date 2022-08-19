@@ -49,13 +49,14 @@ popupProfileOpenButton.addEventListener('click', () => {
     openPopup(popupProfile)
 });
 */
+
 // заполнение полей формы попапа редактирования профиля
 export function PopupProfileFormInput({ username, userjob }) {
     nameInput.value = username;
     jobInput.value = userjob;
   }
 
-//функция отправки формы редактирования профиля
+/*//функция отправки формы редактирования профиля
 export function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
@@ -63,19 +64,14 @@ export function handleProfileFormSubmit(evt) {
     
     closePopup(popupProfile)
 }
-
-export function handlePlaceFormSubmit(evt) {
+*/
+/*export function handlePlaceFormSubmit(evt) {
     evt.preventDefault();
     addCard(placeInput.value, linkInput.value)
     formPlace.reset();
     placeProfileValidate.toggleButtonState();
     closePopup(popupPlace);
 }
+*/
 
-// функция добавления новой карточки из попапа место
-const addCard = (name, link) => {
-    const generateCard = new Card(name, link, '#cards', openPopup, closePopup);
-    const renderCard = generateCard.generateCard();
-    elements.prepend(renderCard);
-};
 
