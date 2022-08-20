@@ -1,3 +1,4 @@
+import '../page/index.css';
 import {elements} from './constants.js';
 import {profileAddbutton} from './constants.js';
 import {closeButtons} from './constants.js';
