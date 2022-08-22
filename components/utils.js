@@ -15,6 +15,14 @@ export function closePopup(popup) {
     document.removeEventListener('keydown', closePopupEsc);
 }
 
+// Закрытие попапа через ESC
+function closePopupEsc(evt) {
+    if (evt.key === 'Escape') {
+        const popupActive = document.querySelector('.popup_opened');
+        closePopup(popupActive);
+    }
+}
+
 //Закрытие попапа на оверлей
 popups.forEach(function (item) {
     item.addEventListener('mousedown', (event) => {

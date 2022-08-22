@@ -1,20 +1,20 @@
-import '../page/index.css';
-import {elements} from './constants.js';
-import {profileAddbutton} from './constants.js';
-import {closeButtons} from './constants.js';
-import {formProfileElement} from './constants.js';
-import {formPlace} from './constants.js';
-import {popupProfileOpenButton} from './constants.js';
-import {settings} from './constants.js';
-import {initialCards} from './constants.js';
-import { closePopup } from './utils.js';
-import {PopupProfileFormInput} from './utils.js';
-import Section from './Section.js'
-import {Card} from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-import PopupWithImage from './PopupWithImage.js';
+//import '../page/index.css';
+import {elements} from '../components/constants.js';
+import {profileAddbutton} from '../components/constants.js';
+import {closeButtons} from '../components/constants.js';
+import {formProfileElement} from '../components/constants.js';
+import {formPlace} from '../components/constants.js';
+import {popupProfileOpenButton} from '../components/constants.js';
+import {settings} from '../components/constants.js';
+import {initialCards} from '../components/constants.js';
+import { closePopup } from '../components/utils.js';
+import {PopupProfileFormInput} from '../components/utils.js';
+import Section from '../components/Section.js'
+import {Card} from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 
 //обработчки кнопки закрытия попапов

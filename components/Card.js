@@ -1,7 +1,3 @@
-import { popupPhoto } from './constants.js';
-import {popupImage } from './constants.js';
-import {popupPlaceName} from './constants.js';
-
 
 export class Card {
     constructor({data, handleCardClick}, templateSelector) {
@@ -21,9 +17,9 @@ export class Card {
         this._likeButton = this._element.querySelector('.element__like');
         this._photoCard = this._element.querySelector('.element__photo')
         this._setEventListeners();
-        this._element.querySelector('.element__photo').src = this._link;
+        this._photoCard.src = this._link;
         this._element.querySelector('.element__place-name').textContent = this._name;
-        this._element.querySelector('.element__photo').alt = this._name;
+        this._photoCard.alt = this._name;
         return this._element;
     }
     _handleLikeButton() {
