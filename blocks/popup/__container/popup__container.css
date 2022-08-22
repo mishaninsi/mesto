@@ -4,6 +4,7 @@ margin-top: 8px;
 display: flex;
 flex-direction: column;
 width: calc((430/470)*100%);
+max-width: 430px;
 min-width: 282px;
 height: 330px;
 background: #FFFFFF;

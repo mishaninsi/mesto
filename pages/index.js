@@ -1,33 +1,28 @@
 //import '../page/index.css';
-import {elements} from '../components/constants.js';
-import {profileAddbutton} from '../components/constants.js';
-import {closeButtons} from '../components/constants.js';
-import {formProfileElement} from '../components/constants.js';
-import {formPlace} from '../components/constants.js';
-import {popupProfileOpenButton} from '../components/constants.js';
-import {settings} from '../components/constants.js';
-import {initialCards} from '../components/constants.js';
-import { closePopup } from '../components/utils.js';
-import {PopupProfileFormInput} from '../components/utils.js';
+
+import {
+    profileAddbutton, closeButtons, formProfileElement, formPlace,
+    popupProfileOpenButton, settings, initialCards, nameInput, jobInput} from '../components/constants.js';
+
 import Section from '../components/Section.js'
-import {Card} from '../components/Card.js';
+import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 
 
-//обработчки кнопки закрытия попапов
-closeButtons.forEach((button) => {
-    const popup = button.closest('.popup');
-    button.addEventListener('click', () => closePopup(popup))
-});
 
+// заполнение полей формы попапа редактирования профиля
+function popupProfileFormInput({ username, userjob }) {
+    nameInput.value = username;
+    jobInput.value = userjob;
+  }
 
-const formProfileValidate = new FormValidator (settings, formProfileElement)
+const formProfileValidate = new FormValidator(settings, formProfileElement)
 formProfileValidate.enableValidation();
 
-export const placeProfileValidate = new FormValidator (settings, formPlace)
+export const placeProfileValidate = new FormValidator(settings, formPlace)
 placeProfileValidate.enableValidation()
 
 const viewImagePopup = new PopupWithImage('.popup_photo');
@@ -36,23 +31,22 @@ viewImagePopup.setEventListeners();
 // создание новой карточки + использование класса PopupWithmage для открытия попапа изображения
 const addCard = (data) => {
     const generateCard = new Card({
-        data:data,
+        data: data,
         handleCardClick: (name, link) => {
-      const viewImagePopup = new PopupWithImage('.popup_photo');
-      viewImagePopup.setEventListeners();
-      viewImagePopup.open(name, link);
-        }},'#cards');
+            viewImagePopup.open(name, link);
+        }
+    }, '#cards');
     const renderCard = generateCard.generateCard();
     return renderCard;
 };
 
 //создание карточек массива через класс Section
-const cardList = new Section ({
+const cardList = new Section({
     items: initialCards,
     renderer: (item) => {
-        cardList.addItem(addCard(item));        
+        cardList.addItem(addCard(item));
     },
-}, elements);
+}, '.elements');
 //отрисовка карточек массива
 cardList.renderedItems();
 
@@ -70,14 +64,13 @@ addCardPopup.setEventListeners();
 
 profileAddbutton.addEventListener('click', () => {
     addCardPopup.open();
-    console.log (addCardPopup.open())
 })
 
 // заполнение исходных полей профиля через класс UserInfo
 const userInfo = new UserInfo({
     username: '.profile__column-name',
     userjob: '.profile__column-profession'
-  });
+});
 
 // попап редактирования профиля через класс PopupWithForm
 const editProfilePopup = new PopupWithForm({
@@ -92,12 +85,12 @@ editProfilePopup.setEventListeners();
 
 // Обработчик редактирования попапа профиля
 popupProfileOpenButton.addEventListener('click', () => {
-  const info = userInfo.getUserInfo();
-  PopupProfileFormInput({
-  username: info.username,
-  userjob: info.userjob
-  });
-  editProfilePopup.open();
+    const info = userInfo.getUserInfo();
+    popupProfileFormInput({
+        username: info.username,
+        userjob: info.userjob
+    });
+    editProfilePopup.open();
 });
 
 

@@ -2,7 +2,7 @@ import {popups} from './constants.js';
 import {nameInput} from './constants.js';
 import {jobInput} from './constants.js';
 
-
+/*
 //функция открыти попапов
 export function openPopup(popup) {
     document.addEventListener('keydown', closePopupEsc);
@@ -15,14 +15,6 @@ export function closePopup(popup) {
     document.removeEventListener('keydown', closePopupEsc);
 }
 
-// Закрытие попапа через ESC
-function closePopupEsc(evt) {
-    if (evt.key === 'Escape') {
-        const popupActive = document.querySelector('.popup_opened');
-        closePopup(popupActive);
-    }
-}
-
 //Закрытие попапа на оверлей
 popups.forEach(function (item) {
     item.addEventListener('mousedown', (event) => {
@@ -31,13 +23,9 @@ popups.forEach(function (item) {
         }
     })
 })
+*/
 
 
-// заполнение полей формы попапа редактирования профиля
-export function PopupProfileFormInput({ username, userjob }) {
-    nameInput.value = username;
-    jobInput.value = userjob;
-  }
 
 
 
