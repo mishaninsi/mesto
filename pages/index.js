@@ -12,7 +12,6 @@ import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 
 
-
 // заполнение полей формы попапа редактирования профиля
 function popupProfileFormInput({ username, userjob }) {
     nameInput.value = username;
