@@ -1,0 +1,19 @@
+.element__photo {
+    position: relative;
+    display: flex;
+    grid-area: photo;
+    width: 100%;
+    height: 282px;
+    object-fit: cover;
+    object-position: top;
+    z-index: 1;
+    border-radius: 10px 10px 0px 0px;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 850px) {
+    .element__photo {
+    width: 100%;
+    }
+}

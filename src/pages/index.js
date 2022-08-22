@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import '../page/index.css';
 
 import {
     profileAddbutton, closeButtons, formProfileElement, formPlace,
