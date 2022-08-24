@@ -1,19 +1,19 @@
-import '../pages/index.css';
+import './pages/index.css';
 
 import {
     profileAddbutton, closeButtons, formProfileElement, formPlace,
-    popupProfileOpenButton, settings, initialCards, nameInput, jobInput} from '../components/constants.js';
+    popupProfileOpenButton, settings, initialCards, nameInput, jobInput} from './components/constants.js';
 
-import Section from '../components/Section.js'
-import { Card } from '../components/Card.js';
-import { FormValidator } from '../components/FormValidator.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import UserInfo from '../components/UserInfo.js';
-import PopupWithImage from '../components/PopupWithImage.js';
+import Section from './components/Section.js'
+import { Card } from './components/Card.js';
+import { FormValidator } from './components/FormValidator.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
+import PopupWithImage from './components/PopupWithImage.js';
 
 
 // заполнение полей формы попапа редактирования профиля
-function popupProfileFormInput({ username, userjob }) {
+function addPopupProfileFormInput({ username, userjob }) {
     nameInput.value = username;
     jobInput.value = userjob;
   }
@@ -21,7 +21,7 @@ function popupProfileFormInput({ username, userjob }) {
 const formProfileValidate = new FormValidator(settings, formProfileElement)
 formProfileValidate.enableValidation();
 
-export const placeProfileValidate = new FormValidator(settings, formPlace)
+const placeProfileValidate = new FormValidator(settings, formPlace)
 placeProfileValidate.enableValidation()
 
 const viewImagePopup = new PopupWithImage('.popup_photo');
@@ -61,7 +61,9 @@ const addCardPopup = new PopupWithForm({
 // слушатель для функционала открытия попапа через PopupWithForm
 addCardPopup.setEventListeners();
 
+// слушатель открытия попапа и функция валидации кнопки сабмита попапа добавления новой карточки
 profileAddbutton.addEventListener('click', () => {
+    placeProfileValidate.toggleButtonState();
     addCardPopup.open();
 })
 
@@ -85,7 +87,7 @@ editProfilePopup.setEventListeners();
 // Обработчик редактирования попапа профиля
 popupProfileOpenButton.addEventListener('click', () => {
     const info = userInfo.getUserInfo();
-    popupProfileFormInput({
+    addPopupProfileFormInput({
         username: info.username,
         userjob: info.userjob
     });

@@ -1,9 +1,0 @@
-.popup__close-btn_photo {
-margin-right: -40px;
-}
-
-@media screen and (max-width: 320px) {
-    .popup__close-btn_photo {
-margin-right: 0;
-}
-}
