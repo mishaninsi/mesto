@@ -5,6 +5,7 @@
     min-width: 238px;
     min-height: 27px;
     margin: auto;
+    margin-top: 34px;
     margin-bottom: 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-size: 14px;
@@ -19,7 +20,7 @@
     .popup__user-info {
     width: 238px;
     margin: auto;
-    margin-top: 34px;
+    margin-top: 56px;
     
 }
 }

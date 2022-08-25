@@ -38,10 +38,10 @@
         </footer>
     </div>
     <div class="popup popup_profile">
-        <!--popup_opened-->
-        <div class="popup__style">
-            <button type="button" class="popup__close-btn"></button>
+        <!--popup_opened-->      
+        
             <form name="profile-form" class="popup__form popup__container popup__form-user" novalidate>
+                <button type="button" class="popup__close-btn"></button> 
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <fieldset class="popup__user-info">
                     <input type="text" id="name-card" class="popup__input popup__input_field_name" name="username" minlength="2" maxlength="40" required placeholder="Имя">
@@ -52,33 +52,31 @@
                 </fieldset>
                 <span id="profile-card-error" class="popup__error"></span>
                 <button type="submit" class="popup__submit-btn popup__submit-btn-txt">Сохранить</button>
-            </form>
-        </div>
+            </form>        
     </div>
-    <section class="popup popup_place">
-        <div class="popup__style">
-            <button type="button" class="popup__close-btn popup__close-btn_place"></button>
+    <div class="popup popup_place">
+
             <form name="newplace-form" class="popup__form popup__container popup__container_place popup__form-place" novalidate>
+                <button type="button" class="popup__close-btn popup__close-btn_place"></button>
                 <h3 class="popup__title popup__title_place">Новое место</h3>
                 <fieldset class="popup__user-info popup__user-info_place">
                     <input type="text" id="place-card" class="popup__input popup__input_field_place" name="name" minlength="2" maxlength="30" required placeholder="Название">
                 </fieldset>
                 <span id="place-card-error" class="popup__error"></span>
-                <fieldset class="popup__user-info popup__user-info_link">
+                <fieldset class="popup__user-info popup__user-info_link popup__user-info_margin_active">
                     <input type="url" id="link-card" class="popup__input popup__input_field_link" name="link" minlength="9" required placeholder="Ссылка на картинку">
                 </fieldset>
                 <span id="link-card-error" class="popup__error"></span>
                 <button type="submit" class="popup__submit-btn popup__submit-btn-txt popup__place-btn">Создать</button>
-            </form>
-        </div>
-    </section>
-    <section class="popup popup_photo">
+            </form>        
+    </div>
+    <div class="popup popup_photo">
         <div class="popup__style-photo">
             <button type="button" class="popup__close-btn popup__close-btn_photo"></button>
             <img class="popup__image">
             <p class="popup__place-name"></p>
         </div>
-    </section>
+    </div>
     <template id="cards">
 
         <div class="element">

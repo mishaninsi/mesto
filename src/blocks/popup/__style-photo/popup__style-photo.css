@@ -1,5 +1,6 @@
 .popup__style-photo {
-display: flex;
+position: relative;
+    display: flex;
 flex-direction: column;
 margin: auto;
 width: fit-content;

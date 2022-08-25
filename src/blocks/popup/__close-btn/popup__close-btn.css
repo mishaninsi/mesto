@@ -1,6 +1,7 @@
 .popup__close-btn {
-margin-top: 155px;
-align-self: end;
+position: absolute;
+top: -38px;
+right: -38px;
 width: 32px;
 height: 32px;
 background-color: black;
@@ -16,11 +17,10 @@ cursor: pointer;
     opacity: 0.6; 
  }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 440px) {
     .popup__close-btn {
-margin-top: 87px;
-margin-left: calc((281/320)*100%);
-width: 20px;
-height: 20px;
+        right: 0px;
+        width: 20px;
+        height: 20px;
 }
 }
