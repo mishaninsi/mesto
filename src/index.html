@@ -21,6 +21,7 @@
             <section class="profile">
                 <div class="profile__column">
                     <img class="profile__column-avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
+                    <button class="profile__avatar-btn"></button>
                     <div class="profile__column-info">
                         <h1 class="profile__column-name">Жак-Ив Кусто</h1>
                         <button type="button" class="profile__column-button"></button>
@@ -76,6 +77,17 @@
             <img class="popup__image">
             <p class="popup__place-name"></p>
         </div>
+    </div>
+    <div class="popup popup_avatar">
+            <form name="avatar-form" class="popup__form popup__container popup__form-avatar" novalidate>
+                <button type="button" class="popup__close-btn"></button> 
+                <h3 class="popup__title">Обновить аватар</h3>
+                <fieldset class="popup__user-info">
+                    <input type="url" id="avatar" class="popup__input popup__input_field_name" name="link" minlength="9" required placeholder="Ссылка на картинку">
+                </fieldset>
+                <span id="avatar-error" class="popup__error"></span>
+                <button type="submit" class="popup__submit-btn popup__submit-btn-txt">Сохранить</button>
+            </form>        
     </div>
     <template id="cards">
 

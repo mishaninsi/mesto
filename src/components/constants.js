@@ -6,6 +6,13 @@ export const popupPhoto = document.querySelector('.popup_photo');
 export const popups = document.querySelectorAll('.popup');
 export const popupImage = document.querySelector('.popup__image');
 export const popupPlaceName = document.querySelector('.popup__place-name');
+
+export const popupNewAvatar = document.querySelector('.popup_avatar');
+export const formNewAvatar = document.querySelector('.popup__form-avatar');
+export const btnAvatar = document.querySelector('.profile__avatar-btn');
+export const avatar = document.querySelector('.profile__column-avatar');
+
+
 export const closeButtons = document.querySelectorAll('.popup__close-btn');
 export const profileName = document.querySelector('.profile__column-name');
 export const profileProfession = document.querySelector('.profile__column-profession');

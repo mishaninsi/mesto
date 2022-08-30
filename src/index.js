@@ -2,7 +2,8 @@ import './pages/index.css';
 
 import {
     profileAddbutton, closeButtons, formProfileElement, formPlace,
-    popupProfileOpenButton, settings, initialCards, nameInput, jobInput} from './components/constants.js';
+    popupProfileOpenButton, settings, initialCards, nameInput, jobInput, popupNewAvatar,
+    formNewAvatar, btnAvatar, avatar} from './components/constants.js';
 
 import Section from './components/Section.js'
 import { Card } from './components/Card.js';
@@ -10,6 +11,7 @@ import { FormValidator } from './components/FormValidator.js';
 import PopupWithForm from './components/PopupWithForm.js';
 import UserInfo from './components/UserInfo.js';
 import PopupWithImage from './components/PopupWithImage.js';
+import { data } from 'autoprefixer';
 
 
 // заполнение полей формы попапа редактирования профиля
@@ -26,6 +28,9 @@ placeProfileValidate.enableValidation()
 
 const viewImagePopup = new PopupWithImage('.popup_photo');
 viewImagePopup.setEventListeners();
+
+const formNewAvatarValidate = new FormValidator(settings, formNewAvatar)
+formNewAvatarValidate.enableValidation();
 
 // создание новой карточки + использование класса PopupWithmage для открытия попапа изображения
 const addCard = (data) => {
@@ -84,6 +89,24 @@ const editProfilePopup = new PopupWithForm({
 
 editProfilePopup.setEventListeners();
 
+// попап редактирования аватара пользователя
+const editAvatarPopup = new PopupWithForm({
+    popupSelector: '.popup_avatar',
+    handleFormSubmit: (formData) => {
+        avatar.src = formData.link;
+        editAvatarPopup.close();
+    }
+});
+
+editAvatarPopup.setEventListeners();
+
+// обработчик редактирования попапа редактирования аватара
+btnAvatar.addEventListener('click', () => {
+    formNewAvatarValidate.toggleButtonState();
+    editAvatarPopup.open();
+  });
+
+
 // Обработчик редактирования попапа профиля
 popupProfileOpenButton.addEventListener('click', () => {
     const info = userInfo.getUserInfo();
@@ -93,23 +116,4 @@ popupProfileOpenButton.addEventListener('click', () => {
     });
     editProfilePopup.open();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
