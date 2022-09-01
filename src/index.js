@@ -12,6 +12,7 @@ import PopupWithForm from './components/PopupWithForm.js';
 import UserInfo from './components/UserInfo.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import { data } from 'autoprefixer';
+import Api from './components/Api';
 
 
 // заполнение полей формы попапа редактирования профиля
@@ -100,6 +101,23 @@ const editAvatarPopup = new PopupWithForm({
 
 editAvatarPopup.setEventListeners();
 
+// попап удаления карточки
+
+const deleteCardPopupPlace = new PopupWithForm({
+    popupSelector: '.popup_card-deleter',
+    handleFormSubmit: () => {
+        console.log('123'); 
+    }
+});
+
+deleteCardPopupPlace.setEventListeners();
+
+const trashBtn = document.querySelector('.element__thrash');
+trashBtn.addEventListener('click', () => {
+deleteCardPopupPlace.open();
+});
+
+
 // обработчик редактирования попапа редактирования аватара
 btnAvatar.addEventListener('click', () => {
     formNewAvatarValidate.toggleButtonState();
@@ -117,3 +135,17 @@ popupProfileOpenButton.addEventListener('click', () => {
     editProfilePopup.open();
 });
 
+// подключение API
+
+const api = new Api({
+baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
+headers: {
+    authorization: '54257d03-9097-479f-8916-197225ef6b08',
+    'Content-Type': 'application/json'
+  }
+});
+
+// Загрузка готовых карточек с сервера
+api.getInitialCards().then((initialCards) => {
+    cardList.renderedItems(initialCards);
+})

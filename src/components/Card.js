@@ -49,9 +49,9 @@ export class Card {
         this._likeButton.addEventListener('click', () => {
             this._handleLikeButton();
         });
-        this._element.querySelector('.element__thrash').addEventListener('click', () => {
-            this._handleTrashButton();
-        });
+        //this._element.querySelector('.element__thrash').addEventListener('click', () => {
+        //    this._handleTrashButton();
+       // });
         this._photoCard.addEventListener('click', () => {
             this._handleOpenPopup();
         })
