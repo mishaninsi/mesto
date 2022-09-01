@@ -61,8 +61,14 @@ const cardList = new Section({
 const addCardPopup = new PopupWithForm({
     popupSelector: '.popup_place',
     handleFormSubmit: (formData) => {
+       // cardList.addItem(addCard(formData));
+       // addCardPopup.close();
+       api.addCards(formData)
+       .then(() => {
         cardList.addItem(addCard(formData));
         addCardPopup.close();
+       })
+    
     }
 });
 // слушатель для функционала открытия попапа через PopupWithForm
@@ -84,8 +90,12 @@ const userInfo = new UserInfo({
 const editProfilePopup = new PopupWithForm({
     popupSelector: '.popup_profile',
     handleFormSubmit: (formData) => {
+         
+    api.editUserInfo(formData)
+      .then(() => {
         userInfo.setUserInfo(formData);
         editProfilePopup.close();
+      });
     }
 });
 
@@ -150,3 +160,13 @@ headers: {
 api.getInitialCards().then((initialCards) => {
     cardList.renderedItems(initialCards);
 })
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
+headers: {
+        authorization: '54257d03-9097-479f-8916-197225ef6b08',
+        }
+})
+.then(res => res.json())
+.then((result) => {
+    console.log(result)
+});
