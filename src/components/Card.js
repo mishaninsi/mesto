@@ -1,10 +1,11 @@
 
 export class Card {
-    constructor({data, handleCardClick}, templateSelector) {
+    constructor({data, templateSelector, handleCardClick, api}) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._handleCardClick = handleCardClick
+        this._handleCardClick = handleCardClick;
+        this._api = api
         
         
     }

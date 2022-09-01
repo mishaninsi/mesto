@@ -37,23 +37,24 @@ formNewAvatarValidate.enableValidation();
 const addCard = (data) => {
     const generateCard = new Card({
         data: data,
+        templateSelector: '#cards',
         handleCardClick: (name, link) => {
             viewImagePopup.open(name, link);
-        }
-    }, '#cards');
+        },
+        api: api
+    });
     const renderCard = generateCard.generateCard();
     return renderCard;
 };
 
 //создание карточек массива через класс Section
 const cardList = new Section({
-    items: initialCards,
-    renderer: (item) => {
-        cardList.addItem(addCard(item));
+        renderer: (card) => {
+        cardList.addItem(addCard(card));
     },
 }, '.elements');
 //отрисовка карточек массива
-cardList.renderedItems();
+//cardList.renderedItems();
 
 //добавление новой карточки через класс PopupWithForm
 
@@ -102,7 +103,7 @@ const editAvatarPopup = new PopupWithForm({
 editAvatarPopup.setEventListeners();
 
 // попап удаления карточки
-
+/*
 const deleteCardPopupPlace = new PopupWithForm({
     popupSelector: '.popup_card-deleter',
     handleFormSubmit: () => {
@@ -116,7 +117,7 @@ const trashBtn = document.querySelector('.element__thrash');
 trashBtn.addEventListener('click', () => {
 deleteCardPopupPlace.open();
 });
-
+*/
 
 // обработчик редактирования попапа редактирования аватара
 btnAvatar.addEventListener('click', () => {
