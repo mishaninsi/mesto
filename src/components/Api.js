@@ -3,11 +3,21 @@ export default class Api {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
     }
+
+    _Response(res) {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`)
+      }
+    
+
     // загрузка информации о пользователе сервера
     getUserInfo() {
-        fetch(`${this._baseUrl}/users/me`, {
-          headers: this._headers
-        })        
+        return fetch(`${this._baseUrl}/users/me`, {
+            headers: this._headers
+          })
+        .then(res => this._Response(res));           
     }
 
     // загрузка карточек с сервера
@@ -44,6 +54,38 @@ export default class Api {
             name: data.name,
             link: data.link
           })
+    })
+    }
+
+    deleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+          method: 'DELETE',
+          headers: this._headers
+        })
+    }
+
+    setLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+          method: 'PUT',
+          headers: this._headers
+    })
+    }
+
+    deleteLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+          method: 'DELETE',
+          headers: this._headers
+        })
+    }
+
+    // Редактирование аватара пользователя через попап
+    editAvatar(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar
+      })
     })
     }
         

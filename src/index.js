@@ -11,8 +11,30 @@ import { FormValidator } from './components/FormValidator.js';
 import PopupWithForm from './components/PopupWithForm.js';
 import UserInfo from './components/UserInfo.js';
 import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithDelete from './components/PopupWithDelete';
 import { data } from 'autoprefixer';
 import Api from './components/Api';
+
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
+    headers: {
+        authorization: '54257d03-9097-479f-8916-197225ef6b08',
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    let userId
+    
+    // Загрузка готовых карточек с сервера
+    Promise.all([api.getInitialCards(), api.getUserInfo()])
+       .then(([initialCards, userData]) => {
+        userInfo.setUserInfo(userData);
+        userId = userData._id;
+        cardList.renderedItems(initialCards);
+    })
+    .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
 
 
 // заполнение полей формы попапа редактирования профиля
@@ -38,8 +60,12 @@ const addCard = (data) => {
     const generateCard = new Card({
         data: data,
         templateSelector: '#cards',
+        userId: userId,
         handleCardClick: (name, link) => {
             viewImagePopup.open(name, link);
+        },
+        handleDelete: (card, cardId) => {
+            deleteCardPopupPlace.open(card, cardId);
         },
         api: api
     });
@@ -63,8 +89,9 @@ const addCardPopup = new PopupWithForm({
     handleFormSubmit: (formData) => {
        // cardList.addItem(addCard(formData));
        // addCardPopup.close();
+       addCardPopup.loading(true);
        api.addCards(formData)
-       .then(() => {
+       .then((formData) => {
         cardList.addItem(addCard(formData));
         addCardPopup.close();
        })
@@ -83,14 +110,15 @@ profileAddbutton.addEventListener('click', () => {
 // заполнение исходных полей профиля через класс UserInfo
 const userInfo = new UserInfo({
     username: '.profile__column-name',
-    userjob: '.profile__column-profession'
+    userjob: '.profile__column-profession',
+    avatar: '.profile__column-avatar'
 });
 
 // попап редактирования профиля через класс PopupWithForm
 const editProfilePopup = new PopupWithForm({
     popupSelector: '.popup_profile',
     handleFormSubmit: (formData) => {
-         
+    editProfilePopup.loading(true);     
     api.editUserInfo(formData)
       .then(() => {
         userInfo.setUserInfo(formData);
@@ -104,25 +132,34 @@ editProfilePopup.setEventListeners();
 // попап редактирования аватара пользователя
 const editAvatarPopup = new PopupWithForm({
     popupSelector: '.popup_avatar',
-    handleFormSubmit: (formData) => {
-        avatar.src = formData.link;
-        editAvatarPopup.close();
+    handleFormSubmit: (data) => {
+        editAvatarPopup.loading(true);
+        api.editAvatar(data)
+        .then ((data) => {
+            avatar.src = data.avatar;
+            editAvatarPopup.close();
+          })
     }
 });
 
 editAvatarPopup.setEventListeners();
 
 // попап удаления карточки
-/*
-const deleteCardPopupPlace = new PopupWithForm({
+
+const deleteCardPopupPlace = new PopupWithDelete({
     popupSelector: '.popup_card-deleter',
-    handleFormSubmit: () => {
-        console.log('123'); 
+    handleTrashButton: (card, cardId) => {
+        api.deleteCard(cardId)
+        .then(() => {
+            card.remove();
+            deleteCardPopupPlace.close();
+          })
     }
 });
 
 deleteCardPopupPlace.setEventListeners();
 
+/*
 const trashBtn = document.querySelector('.element__thrash');
 trashBtn.addEventListener('click', () => {
 deleteCardPopupPlace.open();
@@ -148,20 +185,9 @@ popupProfileOpenButton.addEventListener('click', () => {
 
 // подключение API
 
-const api = new Api({
-baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
-headers: {
-    authorization: '54257d03-9097-479f-8916-197225ef6b08',
-    'Content-Type': 'application/json'
-  }
-});
 
-// Загрузка готовых карточек с сервера
-api.getInitialCards().then((initialCards) => {
-    cardList.renderedItems(initialCards);
-})
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
+fetch('https://mesto.nomoreparties.co/v1/cohort-49//users/me', {
 headers: {
         authorization: '54257d03-9097-479f-8916-197225ef6b08',
         }
