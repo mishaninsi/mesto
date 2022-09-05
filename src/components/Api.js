@@ -25,12 +25,7 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(res => {
-            if (res.ok) {
-                console.log('ok');
-                return res.json()
-            }
-        });
+        .then(res => this._Response(res));
     }
 
     // Редактирование профиля
@@ -43,6 +38,7 @@ export default class Api {
             about: data.job
           })
         })
+        .then(res => this._Response(res));
     }
 
     // добавление новой карточки
@@ -55,6 +51,7 @@ export default class Api {
             link: data.link
           })
     })
+    .then(res => this._Response(res));
     }
 
     deleteCard(cardId) {
@@ -62,6 +59,7 @@ export default class Api {
           method: 'DELETE',
           headers: this._headers
         })
+      .then(res => this._Response(res));
     }
 
     setLike(cardId) {
@@ -69,6 +67,7 @@ export default class Api {
           method: 'PUT',
           headers: this._headers
     })
+    .then(res => this._Response(res));
     }
 
     deleteLike(cardId) {
@@ -76,6 +75,7 @@ export default class Api {
           method: 'DELETE',
           headers: this._headers
         })
+        .then(res => this._Response(res));
     }
 
     // Редактирование аватара пользователя через попап
@@ -87,6 +87,7 @@ export default class Api {
         avatar: data.avatar
       })
     })
+    .then(res => this._Response(res));
     }
         
 }

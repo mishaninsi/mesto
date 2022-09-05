@@ -1,7 +1,7 @@
 .profile__column-avatar {
     width: 120px;
     height: 120px;
-    object-fit: contain;
+    object-fit: cover;
     clip-path: circle(50%);
     }
 

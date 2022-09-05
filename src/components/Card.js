@@ -48,7 +48,7 @@ export class Card {
         if (this._likeButton.classList.contains('element__like_active')) {
             this._api.deleteLike(this._cardId)
             .then((res) => {
-                this.likeButton.classList.remove('element__like_active');
+                this._likeButton.classList.remove('element__like_active');
                 this._likesNumber.textContent = res.likes.length;
         })
         .catch((err) => {
@@ -66,41 +66,17 @@ export class Card {
       }
     }
     
-    // чека владельца карточки
+    // чек владельца карточки
     _checkDelete() {
     if (this._userId !== this._cardOwnerId) {
       this._trashBtn.remove();
     }
   }
-
-
-    /*_handleLikeButton() {
-        this._likeButton.classList.toggle('element__like_active');
-
-    }
-    */
-
-   /* _handleTrashButton() {
-        this._element.remove();
-        this._element = null;
-
-    }
-    */
    
     _handleOpenPopup() {
         this._handleCardClick(this._name, this._link);
     }
-/*
-    handleCardClick(name, link) {
-        name = this._name;
-        link = this._link;
-        this._openPopup(popupPhoto);
-        popupImage.src = link;
-        popupImage.alt = name;
-        popupPlaceName.textContent = name
-        
-    }
-    */
+
     _setEventListeners() {
         this._likeButton.addEventListener('click', () => {
             this._handleLikeButton();

@@ -15,6 +15,8 @@ import PopupWithDelete from './components/PopupWithDelete';
 import { data } from 'autoprefixer';
 import Api from './components/Api';
 
+// подключение API
+
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
     headers: {
@@ -79,17 +81,14 @@ const cardList = new Section({
         cardList.addItem(addCard(card));
     },
 }, '.elements');
-//отрисовка карточек массива
-//cardList.renderedItems();
+
 
 //добавление новой карточки через класс PopupWithForm
 
 const addCardPopup = new PopupWithForm({
     popupSelector: '.popup_place',
     handleFormSubmit: (formData) => {
-       // cardList.addItem(addCard(formData));
-       // addCardPopup.close();
-       addCardPopup.loading(true);
+        addCardPopup.loading(true);
        api.addCards(formData)
        .then((formData) => {
         cardList.addItem(addCard(formData));
@@ -120,7 +119,7 @@ const editProfilePopup = new PopupWithForm({
     handleFormSubmit: (formData) => {
     editProfilePopup.loading(true);     
     api.editUserInfo(formData)
-      .then(() => {
+      .then((formData) => {
         userInfo.setUserInfo(formData);
         editProfilePopup.close();
       });
@@ -159,12 +158,6 @@ const deleteCardPopupPlace = new PopupWithDelete({
 
 deleteCardPopupPlace.setEventListeners();
 
-/*
-const trashBtn = document.querySelector('.element__thrash');
-trashBtn.addEventListener('click', () => {
-deleteCardPopupPlace.open();
-});
-*/
 
 // обработчик редактирования попапа редактирования аватара
 btnAvatar.addEventListener('click', () => {
@@ -183,9 +176,7 @@ popupProfileOpenButton.addEventListener('click', () => {
     editProfilePopup.open();
 });
 
-// подключение API
-
-
+// вывод запросов в консоль
 
 fetch('https://mesto.nomoreparties.co/v1/cohort-49//users/me', {
 headers: {
