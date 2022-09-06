@@ -1,19 +1,19 @@
-import './pages/index.css';
+import './index.css';
 
 import {
     profileAddbutton, closeButtons, formProfileElement, formPlace,
     popupProfileOpenButton, settings, initialCards, nameInput, jobInput, popupNewAvatar,
-    formNewAvatar, btnAvatar, avatar} from './components/constants.js';
+    formNewAvatar, btnAvatar, avatar} from '../components/constants.js';
 
-import Section from './components/Section.js'
-import { Card } from './components/Card.js';
-import { FormValidator } from './components/FormValidator.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithDelete from './components/PopupWithDelete';
+import Section from '../components/Section.js'
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithDelete from '../components/PopupWithDelete';
 import { data } from 'autoprefixer';
-import Api from './components/Api';
+import Api from '../components/Api';
 
 // подключение API
 
