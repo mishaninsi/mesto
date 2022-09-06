@@ -196,14 +196,3 @@ popupProfileOpenButton.addEventListener('click', () => {
     editProfilePopup.open();
 });
 
-// вывод запросов в консоль
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-49//users/me', {
-headers: {
-        authorization: '54257d03-9097-479f-8916-197225ef6b08',
-        }
-})
-.then(res => res.json())
-.then((result) => {
-    console.log(result)
-});
