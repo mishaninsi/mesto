@@ -93,9 +93,14 @@ const addCardPopup = new PopupWithForm({
        .then((formData) => {
         cardList.addItem(addCard(formData));
         addCardPopup.close();
-       })
-    
-    }
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      addCardPopup.loading(false);
+    });
+}
 });
 // слушатель для функционала открытия попапа через PopupWithForm
 addCardPopup.setEventListeners();
@@ -122,8 +127,14 @@ const editProfilePopup = new PopupWithForm({
       .then((formData) => {
         userInfo.setUserInfo(formData);
         editProfilePopup.close();
-      });
-    }
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      editProfilePopup.loading(false);
+    });
+}
 });
 
 editProfilePopup.setEventListeners();
@@ -135,11 +146,17 @@ const editAvatarPopup = new PopupWithForm({
         editAvatarPopup.loading(true);
         api.editAvatar(data)
         .then ((data) => {
-            avatar.src = data.avatar;
+            userInfo.setUserInfo(data);
             editAvatarPopup.close();
-          })
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        })
+        .finally(() => {
+          editAvatarPopup.loading(false);
+        });
     }
-});
+  });
 
 editAvatarPopup.setEventListeners();
 
@@ -152,9 +169,12 @@ const deleteCardPopupPlace = new PopupWithDelete({
         .then(() => {
             card.remove();
             deleteCardPopupPlace.close();
-          })
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
     }
-});
+  });
 
 deleteCardPopupPlace.setEventListeners();
 
